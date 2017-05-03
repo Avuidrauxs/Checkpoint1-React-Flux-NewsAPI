@@ -3,6 +3,7 @@ import React from "react";
 import Article from "../components/Article";
 
 export default class Gaming extends React.Component {
+  
   render() {
     const Articles = [
       "Some Article",
