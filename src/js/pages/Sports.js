@@ -2,7 +2,7 @@ import React from "react";
 
 import Article from "../components/Article";
 
-export default class Archives extends React.Component {
+export default class Sports extends React.Component {
   render() {
     const { query } = this.props.location;
     const { params } = this.props;
@@ -22,7 +22,7 @@ export default class Archives extends React.Component {
 
     return (
       <div>
-        <h1>Archives</h1>
+        <h1>Sports</h1>
         article: {article}, date: {date}, filter: {filter}
         <div class="row">{Articles}</div>
       </div>

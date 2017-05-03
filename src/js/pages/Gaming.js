@@ -2,7 +2,7 @@ import React from "react";
 
 import Article from "../components/Article";
 
-export default class Featured extends React.Component {
+export default class Gaming extends React.Component {
   render() {
     const Articles = [
       "Some Article",
@@ -28,7 +28,7 @@ export default class Featured extends React.Component {
     ];
 
     const randomAd = adText[Math.round( Math.random() * (adText.length-1) )];
-    console.log("featured");
+    console.log("gaming");
     return (
       <div>
         <div class="row">
