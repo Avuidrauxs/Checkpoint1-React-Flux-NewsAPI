@@ -15,33 +15,31 @@ export default class Sports extends React.Component {
   }
   componentDidMount() {
   NewsAPI.getNews('sport').then(res => {
-      const posts = res.map(obj => obj.data);
+      const posts = res;
       this.setState({ posts });
+      console.log(posts);
+    },err => {
+      console.log(err);
     });
 }
   render() {
-    const { query } = this.props.location;
-    const { params } = this.props;
-    const { article } = params;
-    const { date, filter } = query;
+    // const { query } = this.props.location;
+    // const { params } = this.props;
+    // const { article } = params;
+    // const { date, filter } = query;
 
-    // const Articles = [
-    //   "Some Article",
-    //   "Some Other Article",
-    //   "Yet Another Article",
-    //   "Still More",
-    //   "Fake Article",
-    //   "Partial Article",
-    //   "American Article",
-    //   "Mexican Article",
-    // ].map((title, i) => <Article key={i} title={title}/> ); article: {article}, date: {date}, filter: {filter}
-    //const Articles = NewsAPI.getNews('sport').map((title, i) => <Article key={i} title={title}/> );
 
     return (
       <div>
         <h1>Sports</h1>
 
-        <div class="row">{this.state.posts}</div>
+        <div class="row">{this.state.posts.map((val,keys)=>
+
+            <Article key={keys} title={val.id} description={val.description} url={val.url}/>
+        )}
+
+
+        </div>
       </div>
     );
   }

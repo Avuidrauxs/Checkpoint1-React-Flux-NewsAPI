@@ -2,45 +2,43 @@ import React from "react";
 
 import Article from "../components/Article";
 
+import NewsAPI from "../api/NewsAPI";
+
 export default class Gaming extends React.Component {
-  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      posts: []
+    };
+  }
+  componentDidMount() {
+  NewsAPI.getNews('gaming').then(res => {
+      const posts = res;
+      this.setState({ posts });
+      console.log(posts);
+    },err => {
+      console.log(err);
+    });
+}
   render() {
-    const Articles = [
-      "Some Article",
-      "Some Other Article",
-      "Yet Another Article",
-      "Still More",
-      "Some Article",
-      "Some Other Article",
-      "Yet Another Article",
-      "Still More",
-      "Some Article",
-      "Some Other Article",
-      "Yet Another Article",
-      "Still More",
-    ].map((title, i) => <Article key={i} title={title}/> );
+    // const { query } = this.props.location;
+    // const { params } = this.props;
+    // const { article } = params;
+    // const { date, filter } = query;
 
-    const adText = [
-      "Ad spot #1",
-      "Ad spot #2",
-      "Ad spot #3",
-      "Ad spot #4",
-      "Ad spot #5",
-    ];
 
-    const randomAd = adText[Math.round( Math.random() * (adText.length-1) )];
-    console.log("gaming");
     return (
       <div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="well text-center">
-              {randomAd}
-            </div>
-          </div>
-        </div>
+        <h1>Gaming</h1>
 
-        <div class="row">{Articles}</div>
+        <div class="row">{this.state.posts.map((val,keys)=>
+
+            <Article key={keys} title={val.id} description={val.description} url={val.url}/>
+        )}
+
+
+        </div>
       </div>
     );
   }
