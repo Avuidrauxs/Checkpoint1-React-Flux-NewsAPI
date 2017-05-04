@@ -14,7 +14,7 @@ export default class Sports extends React.Component {
     };
   }
   componentDidMount() {
-  NewsAPI.getNews('sport').then(res => {
+  NewsAPI.getSources('ign').then(res => {
       const posts = res;
       this.setState({ posts });
       console.log(posts);
@@ -33,13 +33,14 @@ export default class Sports extends React.Component {
       <div>
         <h1>Sports</h1>
 
-        <div class="row">{this.state.posts.map((val,keys)=>
+          <div class="row">{this.state.posts.map((val,keys)=>
 
-            <Article key={keys} title={val.id} description={val.description} url={val.url}/>
-        )}
+              <Article key={keys} title={val.title} description={val.description} url={val.url}/>
+          )}
 
 
-        </div>
+          </div>
+
       </div>
     );
   }

@@ -9,17 +9,27 @@ export default class Gaming extends React.Component {
     super(props);
 
     this.state = {
-      posts: []
+      posts: [],
+      sources: []
+
     };
   }
   componentDidMount() {
-  NewsAPI.getNews('gaming').then(res => {
+  NewsAPI.getNews().then(res => {
       const posts = res;
-      this.setState({ posts });
+      this.setState({ posts: posts});
       console.log(posts);
     },err => {
       console.log(err);
     });
+
+    NewsAPI.getSources('cnn').then(res => {
+        const sources = res;
+        this.setState({ sources: sources});
+        console.log(sources);
+      },err => {
+        console.log(err);
+      });
 }
   render() {
     // const { query } = this.props.location;
@@ -28,17 +38,33 @@ export default class Gaming extends React.Component {
     // const { date, filter } = query;
 
 
+    // <div class="row">
+    //   {this.state.posts.map((val,keys)=>
+    //
+    //       <Article key={keys} title={val.id} description={val.description} url={val.url}/>
+    //   )}
+    //
+    // </div>
+
     return (
       <div>
         <h1>Gaming</h1>
 
-        <div class="row">{this.state.posts.map((val,keys)=>
+          <select>
+            {this.state.posts.map((val,keys)=>
 
-            <Article key={keys} title={val.id} description={val.description} url={val.url}/>
-        )}
+                <option value={val.name}>{val.name}</option>
+            )}
+          </select>
+
+          <div class="row">{this.state.sources.map((val,keys)=>
+
+              <Article key={keys} title={val.title} description={val.description} url={val.url}/>
+          )}
 
 
-        </div>
+          </div>
+
       </div>
     );
   }
