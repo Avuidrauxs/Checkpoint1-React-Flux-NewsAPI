@@ -4,6 +4,8 @@ import Article from "../components/Article";
 
 import NewsAPI from "../api/NewsAPI";
 
+import NewsAPIStore from '../store/NewsAPIStore';
+
 export default class Sports extends React.Component {
 
   constructor(props) {
@@ -27,16 +29,19 @@ export default class Sports extends React.Component {
     // const { params } = this.props;
     // const { article } = params;
     // const { date, filter } = query;
-
+    const {posts} = this.state;
+    console.log(posts);
+    const Articles = posts.map((val,keys)=>{
+        return <Article key={keys} title={val.title} description={val.description} url={val.url}/>;
+      });
 
     return (
       <div>
         <h1>Sports</h1>
 
-          <div class="row">{this.state.posts.map((val,keys)=>
 
-              <Article key={keys} title={val.title} description={val.description} url={val.url}/>
-          )}
+          <div class="row">
+            {Articles}
 
 
           </div>
